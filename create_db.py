@@ -1,8 +1,19 @@
 import sqlite3
 def create_db():
-    con=sqlite3.connect(database=r'IMS.db')
+    con=sqlite3.connect(database=r'protuple_inventory.db')
     cur=con.cursor()
-    cur.execute("create table if not exists employee(eid integer primary key autoincrement,name text,email text,gender text,contact text,dob text,doj text,pass text,utype text,address text,salary text)")
+    cur.execute("CREATE TABLE IF NOT EXISTS employee(eid INTEGER PRIMARY KEY AUTOINCREMENT,name text,email text,gender text,contact text,dob text,doj text,pass text,utype text,address text,salary text)")
     con.commit()
-    
-    create_db()
+
+    cur.execute("CREATE TABLE IF NOT EXISTS supplier(invoice INTEGER PRIMARY KEY AUTOINCREMENT,name text,contact text,desc text)")
+    con.commit()
+
+    cur.execute("CREATE TABLE IF NOT EXISTS category(cid INTEGER PRIMARY KEY AUTOINCREMENT,name text)")
+    con.commit()
+
+    cur.execute("CREATE TABLE IF NOT EXISTS product(pid INTEGER PRIMARY KEY AUTOINCREMENT,Supplier text,Category text,name text,price text,qty text,status text)")
+    con.commit()
+
+
+
+create_db() 
